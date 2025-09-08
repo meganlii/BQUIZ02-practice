@@ -80,9 +80,9 @@ class DB{
         if (isset($arg[0])) {
             if (is_array($arg[0])) {
                 $tmp=$this->arraytosql($arg[0]);
-                $sql=$sql." where ".join(" AND " , $tmp ) ;   
+                $sql=$sql." where ".join(" AND " , $tmp ) ;
             }else{
-                 $sql .= $arg[0];
+                $sql .= $arg[0];
             }
         }
 
@@ -184,7 +184,7 @@ if (!isset($_SESSION['visit'])) {
 
     if (empty($today)) {
     //沒有今天資料
-    $Visit->save(['date'=>date("Y-m-d"),'visit'=>1]);
+    $Visit->save(['date'=> date("Y-m-d"),'visit'=>1]);
 
     }else{
     $today['visit']++;
@@ -199,3 +199,8 @@ if (!isset($_SESSION['visit'])) {
     $_SESSION['visit']=1;
 }
 
+// 容易打錯地方
+// 1. .= 打成 =
+// 2. 沒打 胖箭頭=>
+// 3. $this->後面接字串 不接變數  $this->arraytosql
+// 4. 反斜線/sql欄位專屬符號  不是單引號 不要打錯
